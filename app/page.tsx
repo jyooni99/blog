@@ -1,14 +1,14 @@
 import { getAllPosts } from "@/src/lib/posts";
 import Link from "next/link";
 
-const Home = async () => {
-  const posts = await getAllPosts();
+const Home = () => {
+  const posts = getAllPosts();
 
   return (
     <div>
-      {posts.map((post) => (
-        <Link key={post.filePath} href={`/post/${post.filePath}`}>
-          {post.data.title}
+      {posts.map(({ slug, metaData }) => (
+        <Link key={slug} href={`/post/${slug}`}>
+          {metaData.title}
         </Link>
       ))}
     </div>
