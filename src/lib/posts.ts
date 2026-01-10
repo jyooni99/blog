@@ -2,21 +2,23 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-export const POSTS_PATH = path.join(process.cwd(), "src/posts");
+const POSTS_PATH = path.join(process.cwd(), "src/posts");
 
-export const postFilePaths = fs
-  .readdirSync(POSTS_PATH)
-  .filter((path) => /\.mdx?$/.test(path));
+export const getPostDetail = (slug: string) => {
+  const mdxFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
+  const mdxFileContents = fs.readFileSync(mdxFilePath, "utf8");
+  const { content: MDXContent, data: metaData } = matter(mdxFileContents);
 
-export function getAllPosts() {
-  const posts = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath), "utf8");
-    const { data, content } = matter(source);
-    return {
-      data,
-      content,
-      filePath,
-    };
+  return { MDXContent, metaData };
+};
+
+export const getAllPosts = () => {
+  const mdxFiles = fs.readdirSync(POSTS_PATH).filter((file) => file.endsWith(".mdx"));
+
+  return mdxFiles.map((file) => {
+    const slug = file.replace(/\.mdx$/, "");
+    const { metaData } = getPostDetail(slug);
+
+    return { metaData, slug };
   });
-  return posts;
-}
+};
