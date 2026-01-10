@@ -1,3 +1,5 @@
+import Footer from "@/src/components/footer";
+import Header from "@/src/components/header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -14,10 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "yoon-log",
-    template: "%s | yoon-log",
+    default: "yoon_log",
+    template: "%s | yoon_log",
   },
-  description: "FrontEnd Developer Yoon's Blog. 개발 이슈나 학습 관련 글을 공유합니다.",
+  description:
+    "프론트엔드 개발자 박지윤의 블로그입니다. 개발 이슈나 학습 관련 글을 공유합니다.",
   keywords: [
     "Next.js",
     "React",
@@ -35,10 +38,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://yoon-log.vercel.app",
-    title: "yoon-log",
-    description: "FrontEnd Developer Yoon's Blog. 개발 이슈나 학습 관련 글을 공유합니다.",
-    siteName: "yoon-log",
+    url: "https://yoonlog.vercel.app",
+    title: "yoon_log",
+    description:
+      "프론트엔드 개발자 박지윤의 블로그입니다. 개발 이슈나 학습 관련 글을 공유합니다.",
+    siteName: "yoon_log",
   },
 };
 
@@ -48,9 +52,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="ko_KR" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+      >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

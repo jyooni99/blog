@@ -21,7 +21,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
   const { MDXContent, metaData } = getPostDetail(slug);
 
   return (
-    <article className="prose prose-lg max-w-4xl mx-auto px-4 py-8">
+    <article className="prose prose-lg max-w-6xl mx-auto px-4 py-8">
       <h1>{metaData.title}</h1>
       <MDXRemote
         source={MDXContent}

@@ -1,16 +1,18 @@
+import PostCard from "@/src/components/post-card";
+import Profile from "@/src/components/profile";
 import { getAllPosts } from "@/src/lib/posts";
-import Link from "next/link";
 
 const Home = () => {
   const posts = getAllPosts();
 
   return (
-    <div>
-      {posts.map(({ slug, metaData }) => (
-        <Link key={slug} href={`/post/${slug}`}>
-          {metaData.title}
-        </Link>
-      ))}
+    <div className="max-w-4xl mx-auto px-6 lg:px-0 py-16">
+      <Profile />
+      <ul className="flex flex-col">
+        {posts.map(({ slug, metaData }) => (
+          <PostCard key={slug} slug={slug} metaData={metaData} />
+        ))}
+      </ul>
     </div>
   );
 };
