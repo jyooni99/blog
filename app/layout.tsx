@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://yoonlog.vercel.app",
+    url: "yoon-dev-log.vercel.app",
     title: "yoon_log",
     description:
       "프론트엔드 개발자 박지윤의 블로그입니다. 개발 이슈나 학습 관련 글을 공유합니다.",
