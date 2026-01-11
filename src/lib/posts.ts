@@ -5,6 +5,28 @@ import path from "path";
 
 const POSTS_PATH = path.join(process.cwd(), "src/posts");
 
+const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+  return `${month} ${day}, ${year}`;
+};
+
 export const getPostDetail = (slug: string) => {
   const mdxFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const mdxFileContents = fs.readFileSync(mdxFilePath, "utf8");
@@ -13,7 +35,7 @@ export const getPostDetail = (slug: string) => {
   const metaData: PostMetadata = {
     title: data.title || "",
     description: data.description || "",
-    date: data.date || "",
+    date: data.date ? formatDate(data.date) : "",
     tags: data.tags || [],
     coverImage: data.coverImage || "",
   };

@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="flex justify-between gap-3 max-w-4xl px-6 lg:px-0 mx-auto">
         <p>&copy; 2026 Yoon_log. All rights reserved.</p>
         <Link href="https://github.com/jyooni99" target="_blank" className="inline-block">
-          <Github className="w-5 h-5 hover:text-violet-500 transition-colors" />
+          <Github className="w-5 h-5 hover-violet" />
         </Link>
       </div>
     </footer>

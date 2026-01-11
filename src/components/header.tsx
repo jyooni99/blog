@@ -9,10 +9,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b dark:border-zinc-800 dark:bg-zinc-900 border-gray-200">
       <div className="max-w-4xl px-6 lg:px-0 mx-auto py-4 flex justify-between items-center">
-        <Link
-          href="/"
-          className="text-xl font-black italic font-mono hover:text-violet-500 transition-colors"
-        >
+        <Link href="/" className="text-xl font-black italic font-mono hover-violet">
           Yoon_log
         </Link>
 
@@ -21,7 +18,7 @@ const Header = () => {
             <Link
               key={href}
               href={href}
-              className="font-black font-mono italic hover:text-violet-500 transition-colors"
+              className="font-black font-mono italic hover-violet"
             >
               {label}
             </Link>

@@ -26,7 +26,7 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
     a: ({ href, children }) => (
       <a
         href={href}
-        className="text-violet-600 font-semibold dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 hover:underline hover:underline-offset-4"
+        className="text-violet-600 font-semibold dark:text-violet-300 hover:text-violet-800 dark:hover:text-violet-400 hover:underline hover:underline-offset-4"
       >
         {children}
       </a>
@@ -62,10 +62,12 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
       </div>
     ),
     thead: ({ children }) => (
-      <thead className="bg-violet-400 text-white text-sm">{children}</thead>
+      <thead className="bg-violet-400 dark:bg-violet-dark text-white text-sm">
+        {children}
+      </thead>
     ),
     tbody: ({ children }) => (
-      <tbody className="bg-zinc-50 dark:bg-zinc-900 px-5">{children}</tbody>
+      <tbody className="bg-zinc-50 dark:bg-zinc-800 px-5">{children}</tbody>
     ),
     tr: ({ children }) => (
       <tr className="border-b border-zinc-200 dark:border-zinc-800 px-5">{children}</tr>

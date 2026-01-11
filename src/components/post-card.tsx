@@ -15,7 +15,7 @@ const PostCard = ({ slug, metaData }: PostCardProps) => {
         {/* content */}
         <div className="flex flex-col gap-3 flex-1 order-2 sm:order-1">
           <TagsBadge tags={metaData.tags} clickable={false} />
-          <h3 className="text-2xl sm:text-3xl tracking-tight pt-3 font-bold line-clamp-2 group-hover:text-violet-500 transition-colors font-mono">
+          <h3 className="text-2xl sm:text-3xl tracking-tight pt-3 font-bold line-clamp-2 group-hover-violet font-mono">
             {metaData.title}
           </h3>
           <p className="text-gray-600 line-clamp-2 sm:line-clamp-3 leading-relaxed text-sm sm:text-base dark:text-zinc-400">
