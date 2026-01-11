@@ -5,15 +5,93 @@ date: "2025-04-27"
 tags: ["blog"]
 ---
 
-# 테스트 MDX 포스트
+# H1 - 메인 제목
 
-이것은 MDX 파일 테스트용 포스트입니다.
+이것은 MDX 파일 테스트용 포스트입니다. 모든 마크다운 요소를 테스트하기 위한 페이지입니다.
 
-## 특징
+## H2 - 두 번째 제목
 
 MDX를 사용하면 마크다운과 React 컴포넌트를 함께 사용할 수 있습니다.
 
-### 코드 블록 예제
+### H3 - 세 번째 제목
+
+MDX를 사용하면 마크다운과 React 컴포넌트를 함께 사용할 수 있습니다.
+
+#### H4 - 네 번째 제목
+
+MDX를 사용하면 마크다운과 React 컴포넌트를 함께 사용할 수 있습니다.
+
+##### H5 - 다섯 번째 제목
+
+MDX를 사용하면 마크다운과 React 컴포넌트를 함께 사용할 수 있습니다.
+
+###### H6 - 여섯 번째 제목
+
+---
+
+## 문단 (Paragraph)
+
+이것은 일반 문단입니다. 여러 줄의 텍스트를 작성할 수 있습니다. 문단은 자동으로 간격이 설정됩니다.
+이것은 두 번째 문단입니다. 빈 줄로 문단을 구분할 수 있습니다.
+
+---
+
+## 텍스트 스타일
+
+**굵은 글씨 (Bold)**와 *기울임꼴 (Italic)*을 사용할 수 있습니다. **_굵고 기울임꼴_**도 가능합니다.
+
+`인라인 코드`는 이렇게 표시됩니다.
+
+~~취소선~~도 사용할 수 있습니다.
+
+---
+
+## 링크 (Links)
+
+[일반 링크](https://example.com)와 [제목이 있는 링크](https://example.com "링크 제목")를 사용할 수 있습니다.
+
+---
+
+## 리스트 (Lists)
+
+### 순서 없는 리스트 (Unordered List)
+
+- 첫 번째 항목
+- 두 번째 항목
+  - 중첩된 항목 1
+  - 중첩된 항목 2
+- 세 번째 항목
+
+### 순서 있는 리스트 (Ordered List)
+
+1. paypal API url 변경
+   - 개발환경 : https://api-m.sandbox.paypal.com/
+   - production : https://api-m.paypal.com/
+2. 환경 변수 변경
+   - 라이브 환경 전용 credential을 발급받아 교체
+
+### 체크박스 리스트
+
+- [x] 완료된 작업
+- [ ] 진행 중인 작업
+- [ ] 아직 시작하지 않은 작업
+
+---
+
+## 인용문 (Blockquote)
+
+> 이것은 인용문입니다.
+> 여러 줄로 작성할 수 있습니다.
+
+> 중첩된 인용문도 가능합니다.
+>
+> > 이렇게 중첩할 수 있습니다.
+
+---
+
+## 코드 블록 (Code Blocks)
+
+### JavaScript
 
 ```javascript
 function greet(name) {
@@ -21,7 +99,11 @@ function greet(name) {
 }
 
 console.log(greet("MDX"));
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map((n) => n * 2);
 ```
+
+### TypeScript
 
 ```typescript
 interface Post {
@@ -37,20 +119,135 @@ const post: Post = {
 };
 ```
 
-### 리스트 예제
+### Python
 
-- 첫 번째 항목
-- 두 번째 항목
-- 세 번째 항목
+```python
+def greet(name):
+    return f"Hello, {name}!"
 
-### 강조
+print(greet("MDX"))
 
-**굵은 글씨**와 *기울임꼴*을 사용할 수 있습니다.
+# 리스트 컴프리헨션
+numbers = [1, 2, 3, 4, 5]
+doubled = [n * 2 for n in numbers]
+```
 
-### 인용문
+### CSS
 
-> 이것은 인용문입니다.
-> MDX를 사용하면 마크다운의 모든 기능을 활용할 수 있습니다.
+```css
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.button {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+```
+
+### 인라인 코드
+
+`인라인 코드`는 이렇게 표시됩니다.
+
+### 코드 블록 제목이 있는 경우
+
+```typescript:src/components/Button.tsx
+export function Button({ children, onClick }: ButtonProps) {
+  return (
+    <button onClick={onClick} className="btn">
+      {children}
+    </button>
+  );
+}
+```
+
+---
+
+## 테이블 (Table)
+
+| 제목 1 | 제목 2 | 제목 3 |
+| ------ | ------ | ------ |
+| 셀 1-1 | 셀 1-2 | 셀 1-3 |
+| 셀 2-1 | 셀 2-2 | 셀 2-3 |
+| 셀 3-1 | 셀 3-2 | 셀 3-3 |
+
+정렬된 테이블:
+
+| 왼쪽 정렬 | 가운데 정렬 | 오른쪽 정렬 |
+| :-------- | :---------: | ----------: |
+| 왼쪽      |   가운데    |      오른쪽 |
+| 텍스트    |   텍스트    |      텍스트 |
+
+---
+
+## 수평선 (Horizontal Rule)
+
+위에 수평선이 있습니다.
+
+---
+
+아래에도 수평선이 있습니다.
+
+---
+
+## 강조 표시
+
+중요한 내용은 **굵게** 표시하고, 특별한 내용은 *기울임꼴*로 표시할 수 있습니다.
+
+인라인 코드 예제: `const variable = "value"`는 이런 식으로 표시됩니다.
+
+---
+
+## 긴 코드 블록 (스크롤 테스트)
+
+```javascript
+// 이것은 긴 코드 블록입니다. 스크롤이 필요할 수 있습니다.
+function complexFunction(data) {
+  const result = [];
+
+  for (let i = 0; i < data.length; i++) {
+    const item = data[i];
+
+    if (item.type === "user") {
+      result.push({
+        id: item.id,
+        name: item.name,
+        email: item.email,
+        role: item.role || "user",
+        createdAt: item.createdAt,
+        updatedAt: item.updatedAt,
+      });
+    } else if (item.type === "admin") {
+      result.push({
+        id: item.id,
+        name: item.name,
+        email: item.email,
+        role: "admin",
+        permissions: item.permissions || [],
+        createdAt: item.createdAt,
+        updatedAt: item.updatedAt,
+      });
+    }
+  }
+
+  return result.filter((item) => item.name && item.email);
+}
+
+// 더 많은 코드가 있습니다...
+const users = [
+  { id: 1, type: "user", name: "John", email: "john@example.com" },
+  { id: 2, type: "admin", name: "Jane", email: "jane@example.com" },
+];
+
+const processedUsers = complexFunction(users);
+console.log(processedUsers);
+```
 
 ---
 

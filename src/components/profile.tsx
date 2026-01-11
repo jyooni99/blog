@@ -12,7 +12,9 @@ const Profile = () => {
       />
       <div className="flex flex-col items-center gap-1">
         <h3 className="text-2xl font-black font-mono">Yoon_log</h3>
-        <p className="text-gray-500 text-sm">프론트엔드 개발자 박지윤입니다.</p>
+        <p className="text-gray-500 text-sm dark:text-zinc-500">
+          프론트엔드 개발자 박지윤입니다.
+        </p>
       </div>
     </div>
   );
