@@ -1,7 +1,9 @@
 import { getMDXComponents } from "@/src/components/mdx-components";
 import TagsBadge from "@/src/components/tags-badge";
 import { mdxOptions } from "@/src/lib/mdx-options";
+import { getPostMetadata } from "@/src/lib/meta-data";
 import { getPostDetail } from "@/src/lib/posts";
+import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 export async function generateStaticParams() {
@@ -11,6 +13,15 @@ export async function generateStaticParams() {
   return posts.map(({ slug }) => ({
     slug,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: PostDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const { metaData } = getPostDetail(slug);
+
+  return getPostMetadata(metaData);
 }
 
 interface PostDetailPageProps {
