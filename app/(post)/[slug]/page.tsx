@@ -35,7 +35,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
   const readingTimeResult = readingTime(MDXContent as string);
 
   return (
-    <article className="prose prose-lg dark:prose-invert max-w-3xl mx-auto lg:px-0 px-6 pt-30 pb-20">
+    <article className="max-w-3xl mx-auto lg:px-0 px-6 pt-30 pb-20 tracking-tight">
       <div className="pb-10 mb-10 border-b border-gray-200 dark:border-gray-700">
         <h1 className="leading-tight text-5xl font-black pb-7">{metaData.title}</h1>
         <div className="flex items-center gap-1.5 pb-4 text-gray-500 dark:text-gray-400 ">

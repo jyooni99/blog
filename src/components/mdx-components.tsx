@@ -18,7 +18,7 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
 
     // 텍스트 요소
     p: ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>,
-    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+    strong: ({ children }) => <strong className="font-bold mr-0.5">{children}</strong>,
     em: ({ children }) => <em className="italic">{children}</em>,
     del: ({ children }) => <del className="line-through">{children}</del>,
 
@@ -34,13 +34,13 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
 
     // 리스트 요소
     ul: ({ children }) => (
-      <ul className="list-disc list-outside mb-2.5 space-y-2.5 ml-4">{children}</ul>
+      <ul className="list-disc list-outside mb-4 space-y-2.5 ml-4">{children}</ul>
     ),
     ol: ({ children }) => (
       <ol className="list-decimal list-outside mb-2.5 space-y-2.5 ml-4">{children}</ol>
     ),
     li: ({ children }) => (
-      <li className="leading-7 text-zinc-600 first:mt-2.5 dark:text-zinc-300 ml-3 pl-1 marker:text-zinc-500 dark:marker:text-zinc-300">
+      <li className="leading-7 text-zinc-600 first:mt-2.5 dark:text-zinc-300 ml-4 pl-1 marker:text-zinc-500 dark:marker:text-zinc-300">
         {children}
       </li>
     ),

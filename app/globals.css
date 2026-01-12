@@ -31,23 +31,25 @@ body::selection {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-violet-dark: #594c73;
+  --color-violet-dark: #242440;
+  --color-violet-light: #cba6f7;
+  --color-light-bg: #fbfcfd;
 }
 
 .hover-violet {
-  @apply hover:text-violet-500 dark:hover:text-violet-400 transition-colors;
+  @apply hover:text-violet-600 dark:hover:text-violet-light transition-colors;
 }
 
 .group-hover-violet {
-  @apply group-hover:text-violet-500 dark:group-hover:text-violet-400 transition-colors;
+  @apply group-hover:text-violet-600 dark:group-hover:text-violet-light transition-colors;
 }
 
 .badge-violet {
-  @apply text-violet-700 bg-violet-50 dark:text-violet-100 dark:bg-violet-dark;
+  @apply text-violet-700 bg-violet-50 dark:text-violet-light dark:bg-violet-dark;
 }
 
 .badge-hover {
-  @apply hover:bg-violet-100 hover:text-violet-800 transition-colors cursor-pointer dark:hover:bg-violet-dark/60 dark:hover:text-violet-200;
+  @apply hover:bg-violet-100 hover:text-violet-800 transition-colors cursor-pointer dark:hover:bg-violet-dark/60 dark:hover:text-violet-light;
 }
 
 /* ============================================
@@ -60,12 +62,13 @@ figure[data-rehype-pretty-code-figure] {
 }
 
 figure[data-rehype-pretty-code-figure] pre {
-  @apply p-5 rounded-md bg-white border border-zinc-200;
+  @apply p-5 rounded-md bg-light-bg border border-zinc-200 overflow-x-auto;
 }
 
 @media (prefers-color-scheme: dark) {
   figure[data-rehype-pretty-code-figure] pre {
-    @apply bg-zinc-800 border-none;
+    @apply border-none;
+    background-color: var(--shiki-dark-bg);
   }
 }
 
@@ -79,13 +82,14 @@ figure[data-rehype-pretty-code-figure]:has(figcaption) pre {
 
 /* 코드 블록 제목 */
 figcaption[data-rehype-pretty-code-title] {
-  @apply px-5 py-3 text-xs bg-white rounded-t-md border border-zinc-200 border-b-0;
+  @apply px-5 py-3 text-xs bg-light-bg rounded-t-md border border-zinc-200 border-b-0;
   color: var(--shiki-light);
 }
 
 @media (prefers-color-scheme: dark) {
   figcaption[data-rehype-pretty-code-title] {
-    @apply bg-zinc-800 text-zinc-200 border-none;
+    @apply border-none;
+    background-color: var(--shiki-dark-bg);
   }
 }
 
@@ -107,24 +111,20 @@ code[data-theme*=" "] span {
 인라인 코드 스타일
 ============================================ */
 :not(pre) > code {
-  @apply px-1.5 py-0.5 mx-0.5 text-sm bg-zinc-100 text-violet-500;
+  @apply px-1.5 py-0.5 mx-0.5 lg:text-sm text-xs bg-zinc-100! text-violet-500!;
   font-family: var(--font-mono);
 }
 
 :not(pre) > code span {
-  @apply bg-zinc-100 text-violet-500;
+  @apply bg-zinc-100! text-violet-500!;
 }
 
 @media (prefers-color-scheme: dark) {
   :not(pre) > code {
-    @apply bg-zinc-800 text-violet-300;
+    @apply bg-violet-dark! text-violet-light!;
   }
 
   :not(pre) > code span {
-    @apply bg-zinc-800 text-violet-300;
+    @apply bg-violet-dark! text-violet-light!;
   }
 }
-
-/* ============================================
-유틸리티 클래스
-============================================ */

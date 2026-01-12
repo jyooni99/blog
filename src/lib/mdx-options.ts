@@ -8,7 +8,7 @@ const prettyCodeOptions = {
     dark: "catppuccin-mocha",
   },
   keepBackground: true,
-  defaultLang: "typescript",
+  defaultLang: "tsx",
 };
 
 export const mdxOptions: MDXRemoteProps["options"] = {
