@@ -3,7 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-const POSTS_PATH = path.join(process.cwd(), "src/posts");
+const POSTS_PATH = path.join(process.cwd(), "/posts");
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
