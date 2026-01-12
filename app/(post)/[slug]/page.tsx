@@ -1,4 +1,5 @@
-import { getMDXComponents } from "@/src/components/mdx-components";
+import MdxBlockQuote from "@/src/components/mdx/block-quote";
+import { getMDXComponents } from "@/src/components/mdx/mdx-components";
 import TagsBadge from "@/src/components/tags-badge";
 import { mdxOptions } from "@/src/lib/mdx-options";
 import { getPostMetadata } from "@/src/lib/meta-data";
@@ -36,15 +37,16 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
 
   return (
     <article className="max-w-3xl mx-auto lg:px-0 px-6 pt-30 pb-20 tracking-tight">
-      <div className="pb-10 mb-10 border-b border-gray-200 dark:border-gray-700">
+      <div className="pb-6 border-b border-gray-200 dark:border-gray-700">
         <h1 className="leading-tight text-5xl font-black pb-7">{metaData.title}</h1>
-        <div className="flex items-center gap-1.5 pb-4 text-gray-500 dark:text-gray-400 ">
+        <div className="flex items-center gap-1.5 pb-6 text-gray-500 dark:text-gray-400 ">
           <p>{metaData.date}</p>
           <span>·</span>
           <p>{readingTimeResult.text}</p>
         </div>
         <TagsBadge tags={metaData.tags} />
       </div>
+      <MdxBlockQuote className="mt-8">{metaData.description}</MdxBlockQuote>
       <MDXRemote
         source={MDXContent}
         options={mdxOptions}

@@ -111,7 +111,7 @@ code[data-theme*=" "] span {
 인라인 코드 스타일
 ============================================ */
 :not(pre) > code {
-  @apply px-1.5 py-0.5 mx-0.5 lg:text-sm text-xs bg-zinc-100! text-violet-500!;
+  @apply px-1.5 py-0.5 mx-0.5 text-sm tracking-wide bg-zinc-100! text-violet-500!;
   font-family: var(--font-mono);
 }
 

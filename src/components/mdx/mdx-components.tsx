@@ -1,4 +1,7 @@
 import type { MDXComponents } from "mdx/types";
+import BlockQuote from "./block-quote";
+import Callout from "./callout";
+import MdxImage from "./mdx-image";
 
 export function getMDXComponents(components: MDXComponents = {}): MDXComponents {
   return {
@@ -7,17 +10,15 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
       <h1 className="text-4xl mt-8 break-keep mb-3 font-black first:mt-0">{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-extrabold mb-8 mt-16">{children}</h2>
+      <h2 className="text-2xl font-extrabold mb-3 mt-16">{children}</h2>
     ),
-    h3: ({ children }) => <h3 className="text-2xl font-bold mb-6 mt-12">{children}</h3>,
-    h4: ({ children }) => <h4 className="text-xl font-semibold mb-2 mt-4">{children}</h4>,
-    h5: ({ children }) => <h5 className="text-lg font-semibold mb-2 mt-4">{children}</h5>,
-    h6: ({ children }) => (
-      <h6 className="text-base font-semibold mb-2 mt-4">{children}</h6>
+    h3: ({ children }) => <h3 className="text-xl font-bold mb-3 mt-8">{children}</h3>,
+    h4: ({ children }) => (
+      <h4 className="text-lg font-semibold mb-3 mt-12">{children}</h4>
     ),
 
     // 텍스트 요소
-    p: ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>,
+    p: ({ children }) => <p className="my-2 leading-7">{children}</p>,
     strong: ({ children }) => <strong className="font-bold mr-0.5">{children}</strong>,
     em: ({ children }) => <em className="italic">{children}</em>,
     del: ({ children }) => <del className="line-through">{children}</del>,
@@ -34,23 +35,18 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
 
     // 리스트 요소
     ul: ({ children }) => (
-      <ul className="list-disc list-outside mb-4 space-y-2.5 ml-4">{children}</ul>
+      <ul className="list-disc list-outside my-5 ps-7">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="list-decimal list-outside mb-2.5 space-y-2.5 ml-4">{children}</ol>
+      <ol className="list-decimal list-outside my-5 ps-7">{children}</ol>
     ),
     li: ({ children }) => (
-      <li className="leading-7 text-zinc-600 first:mt-2.5 dark:text-zinc-300 ml-4 pl-1 marker:text-zinc-500 dark:marker:text-zinc-300">
+      <li className="leading-7 text-zinc-600 dark:text-zinc-300 ps-1.5 py-2 marker:text-zinc-500 dark:marker:text-zinc-300">
         {children}
       </li>
     ),
 
-    // 인용 요소
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-zinc-200 dark:border-zinc-600 pl-3 italic my-4 font-medium text-zinc-700 dark:text-zinc-300">
-        {children}
-      </blockquote>
-    ),
+    blockquote: ({ children }) => <BlockQuote>{children}</BlockQuote>,
 
     // 구분선 요소
     hr: () => <hr className="my-8 border-zinc-300 dark:border-zinc-800" />,
@@ -81,6 +77,26 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
       <td className="px-10 py-4 text-zinc-700 dark:text-zinc-300" style={style}>
         {children}
       </td>
+    ),
+
+    // 이미지 요소
+    MdxImage: ({ src, alt, width, height, caption, className, priority, ...props }) => (
+      <MdxImage
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        caption={caption}
+        className={className}
+        priority={priority}
+        {...props}
+      />
+    ),
+
+    Callout: ({ type, icon, className, children, ...props }) => (
+      <Callout type={type} icon={icon} className={className} {...props}>
+        {children}
+      </Callout>
     ),
 
     ...components,
