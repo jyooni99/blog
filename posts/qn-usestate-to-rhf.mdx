@@ -92,6 +92,20 @@ React Hook Form은 기본적으로 **비제어(Uncontrolled) 컴포넌트** 방�
 
 따라서 이름 필드에 텍스트를 입력하면, 해당 필드만 내부적으로 업데이트 되어 `JobForm` 컴포넌트가 리렌더링되지 않습니다.
 
+아래는 `useState`을 사용할 때와 `React Hook Form`을 사용할 때의 리렌더링 차이를 보여주는 영상입니다.
+
+`useState`를 사용할 때:
+
+<video autoPlay loop muted playsInline preload="metadata">
+  <source src="/posts/qn-usestate-to-rhf/usestate.mp4" type="video/mp4" />
+</video>
+
+`React Hook Form`을 사용할 때:
+
+<video autoPlay loop muted playsInline preload="metadata">
+  <source src="/posts/qn-usestate-to-rhf/rhf.mp4" type="video/mp4" />
+</video>
+
 ### 2. 관심사의 분리
 
 React Hook Form을 사용하면 컴포넌트의 역할을 명확하게 나눌 수 있습니다.
@@ -116,7 +130,7 @@ React Hook Form은 기본적으로 비제어 컴포넌트 방식을 사용하지
 
 ## 제어 컴포넌트 vs 비제어 컴포넌트
 
-React Hook Form의 장점을 이해하기 위해서는 **제어 컴포넌트(Controlled Component)와 비제어 컴포넌트(Uncontrolled Component)**의 차이를 먼저 짚고 넘어갈 필요가 있습니다.
+React Hook Form의 장점을 이해하기 위해서는 제어 컴포넌트(Controlled Component)와 비제어 컴포넌트(Uncontrolled Component)의 차이를 먼저 짚고 넘어갈 필요가 있습니다.
 
 ### 제어 컴포넌트 (Controlled Component)
 
