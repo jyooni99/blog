@@ -53,47 +53,10 @@ body::selection {
 }
 
 /* ============================================
-rehype-pretty-code: 코드 블록 스타일
+rehype-pretty-code
 ============================================ */
 
-/* 코드 블록 컨테이너 */
-figure[data-rehype-pretty-code-figure] {
-  @apply my-8;
-}
-
-figure[data-rehype-pretty-code-figure] pre {
-  @apply p-5 rounded-md bg-light-bg border border-zinc-200 overflow-x-auto;
-}
-
-@media (prefers-color-scheme: dark) {
-  figure[data-rehype-pretty-code-figure] pre {
-    @apply border-none;
-    background-color: var(--shiki-dark-bg);
-  }
-}
-
-figure[data-rehype-pretty-code-figure] code {
-  @apply text-sm;
-}
-
-figure[data-rehype-pretty-code-figure]:has(figcaption) pre {
-  @apply rounded-t-none border-t-0;
-}
-
-/* 코드 블록 제목 */
-figcaption[data-rehype-pretty-code-title] {
-  @apply px-5 py-3 text-xs bg-light-bg rounded-t-md border border-zinc-200 border-b-0;
-  color: var(--shiki-light);
-}
-
-@media (prefers-color-scheme: dark) {
-  figcaption[data-rehype-pretty-code-title] {
-    @apply border-none;
-    background-color: var(--shiki-dark-bg);
-  }
-}
-
-/* 코드 테마 */
+/* Shiki 테마 색상 변수 적용 (코드 블록만) */
 code[data-theme*=" "],
 code[data-theme*=" "] span {
   @apply bg-transparent;
@@ -107,24 +70,51 @@ code[data-theme*=" "] span {
   }
 }
 
+/* 제목이 있을 때 pre의 border-radius 조정 */
+figure[data-rehype-pretty-code-figure]:has(figcaption) pre {
+  @apply rounded-t-none border-t-0;
+}
+
+/* 인라인 코드 스타일  */
+code:not(figure[data-rehype-pretty-code-figure] code) {
+  @apply px-1.5 py-0.5 mx-0.5 text-sm tracking-wide bg-zinc-100 dark:bg-violet-dark text-violet-500 dark:text-violet-light rounded font-mono;
+}
+
 /* ============================================
-인라인 코드 스타일
+코드 블록 스크롤바 스타일
 ============================================ */
-:not(pre) > code {
-  @apply px-1.5 py-0.5 mx-0.5 text-sm tracking-wide bg-zinc-100! text-violet-500!;
-  font-family: var(--font-mono);
+
+/* 라이트 모드 스크롤바 */
+figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-:not(pre) > code span {
-  @apply bg-zinc-100! text-violet-500!;
+figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-track {
+  background: #f4f4f5;
+  border-radius: 4px;
 }
 
+figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 4px;
+}
+
+figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* 다크 모드 스크롤바 */
 @media (prefers-color-scheme: dark) {
-  :not(pre) > code {
-    @apply bg-violet-dark! text-violet-light!;
+  figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-track {
+    background: #27272a;
   }
 
-  :not(pre) > code span {
-    @apply bg-violet-dark! text-violet-light!;
+  figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-thumb {
+    background: #52525b;
+  }
+
+  figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-thumb:hover {
+    background: #71717a;
   }
 }

@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import BlockQuote from "./block-quote";
 import Callout from "./callout";
 import MdxImage from "./mdx-image";
+import Pre from "./pre";
 
 export function getMDXComponents(components: MDXComponents = {}): MDXComponents {
   return {
@@ -47,6 +48,32 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
     ),
 
     blockquote: ({ children }) => <BlockQuote>{children}</BlockQuote>,
+
+    // 코드 요소
+    code: ({ children, ...props }) => {
+      return <code {...props}>{children}</code>;
+    },
+
+    pre: ({ children, ...props }) => <Pre {...props}>{children}</Pre>,
+
+    figure: ({ children, ...props }) => {
+      return (
+        <figure className="my-8" {...props}>
+          {children}
+        </figure>
+      );
+    },
+
+    figcaption: ({ children, ...props }) => {
+      return (
+        <figcaption
+          className="px-5 py-3 text-xs bg-light-bg dark:bg-zinc-800 rounded-t-md border border-zinc-200 dark:border-none border-b-0"
+          {...props}
+        >
+          {children}
+        </figcaption>
+      );
+    },
 
     // 구분선 요소
     hr: () => <hr className="my-8 border-zinc-300 dark:border-zinc-800" />,
