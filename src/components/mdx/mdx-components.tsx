@@ -36,13 +36,13 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
 
     // 리스트 요소
     ul: ({ children }) => (
-      <ul className="list-disc list-outside my-5 ps-7">{children}</ul>
+      <ul className="list-disc list-outside my-3 ps-7">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="list-decimal list-outside my-5 ps-7">{children}</ol>
+      <ol className="list-decimal list-outside my-3 ps-7">{children}</ol>
     ),
     li: ({ children }) => (
-      <li className="leading-7 text-zinc-600 dark:text-zinc-300 ps-1.5 py-2 marker:text-zinc-500 dark:marker:text-zinc-300">
+      <li className="leading-7 text-zinc-600 dark:text-zinc-300 ps-1.5 py-1.5 marker:text-zinc-500 dark:marker:text-zinc-300">
         {children}
       </li>
     ),
@@ -58,7 +58,7 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
 
     figure: ({ children, ...props }) => {
       return (
-        <figure className="my-8" {...props}>
+        <figure className="my-4" {...props}>
           {children}
         </figure>
       );

@@ -37,10 +37,9 @@ const Pre = ({ children, ...props }: PreProps) => {
       <button
         onClick={handleCopy}
         aria-label="Copy code button"
-        className="absolute top-4 right-4 cursor-pointer w-14 h-14 flex flex-col items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 hover:text-violet-600 dark:hover:text-violet-light hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-md transition-all duration-200"
+        className="absolute top-4 right-4 cursor-pointer p-2 opacity-0 group-hover:opacity-100 hover:text-violet-600 dark:hover:text-violet-light hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-md transition-all duration-200"
       >
         {isCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-        <span className="text-xs text-center">{isCopied ? "Copied!" : "Copy"}</span>
       </button>
 
       <pre
