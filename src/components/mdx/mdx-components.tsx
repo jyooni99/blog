@@ -85,7 +85,7 @@ export function getMDXComponents(components: MDXComponents = {}): MDXComponents 
       </div>
     ),
     thead: ({ children }) => (
-      <thead className="bg-violet-400 dark:bg-violet-dark text-white text-sm">
+      <thead className="bg-violet-400 dark:bg-[#664e8b] text-white text-sm">
         {children}
       </thead>
     ),

@@ -29,7 +29,7 @@ const MdxImage = ({
           width={width || 1200}
           height={height || 630}
           priority={priority}
-          className={`w-full h-full object-cover mt-0 my-0 ${className}`}
+          className={`w-full h-full object-cover mt-0 my-0 py-2 ${className}`}
           {...props}
         />
       </div>
