@@ -1,0 +1,112 @@
+---
+title: "CORS 에러 해결하기"
+description: "CORS와 SOP가 무엇인지, 그리고 CORS 에러를 해결하는 방법에는 무엇이 있는지  알아봅니다."
+date: "2025-03-18"
+tags: ["Quick Network", "CORS", "SOP"]
+
+published: true
+---
+
+## CORS
+
+API 연결 작업을 하다보면 꼭 한 번 마주치는 에러가 있습니다. 바로 CORS 에러입니다.
+
+CORS는 브라우저가 서로 다른 출처 간의 리소스를 공유를 제어하기 위한 보안 정책을 의미합니다.
+
+<Callout theme="red">
+  Access to fetch at https://test.com/api/users from origin http://localhost:3000 has been
+  blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the
+  requested resource. If an opaque response serves your needs, set the request’s mode to
+  ‘no-cors’ to fetch the resource with CORS disabled.
+</Callout>
+
+## Origin
+
+우리가 인터넷을 사용할 때 자주 보이는 이 URL은 하나의 문자열이 아닌, 여러 개의 구성 요소로 이루어져 있습니다.
+출처(Origin)는 **Protocol, Host, Port를 모두 합친 URL**을 의미합니다.
+
+<MdxImage src="/posts/qn-cors/origin.jpg" alt="CORS Origin" />
+
+이 세가지 중 하나라도 다르다면 다른 출처로 간주하며, 출처를 비교하는 로직은 서버가 아닌 **브라우저에서 실행**됩니다.
+
+| URL                                   | 다른 출처인가요?                    |
+| :------------------------------------ | :---------------------------------- |
+| https://www.test.com/api/users        | No                                  |
+| https://test.com/api/users            | No                                  |
+| https://www.test.com:3000/api/users   | Yes (포트가 다름)                   |
+| https://www.testing.com/api/users     | Yes (도메인이 다름)                 |
+| http://www.test.com/api/users         | Yes (프로토콜이 다름)               |
+| http://www.testing.com:3000/api/users | Yes (프로토콜, 도메인, 포트가 다름) |
+
+## SOP와 CORS
+
+SOP는 Same Origin Policy의 약자로, 동일한 출처에서만 리소스를 공유할 수 있도록 제한하는 정책을 의미합니다.
+
+이전에는 프론트엔드와 벡엔드를 분리하지 않고 하나의 애플리케이션으로 구성하는 경우가 많았기 때문에 같은 도메인 안에서 모든 요청을 처리할 수 있었습니다.
+다른 도메인에서 들어오는 요청을 의심스러운 행위로 간주하였고, XSS나 CSRF 공격을 방지하기 위해서 SOP 정책이 도입되었습니다.
+
+하지만 인터넷이 발전하면서 클라이언트와 서버가 분리되었고, API를 호출하는 방식이 대중화되기 시작했습니다.
+다른 출처의 리소스를 요청해야 하는 경우가 생겨나면서 SOP 정책의 완화가 필요했고, CORS 정책이 도입되었습니다.
+
+**우리를 번거롭게 했던 이 에러가 사실은 보안을 위해 꼭 필요한 과정이었던 것**입니다!
+
+### CORS 에러 해결하기: 서버
+
+그렇다면 이 CORS 에러는 어떻게 해결할 수 있을까요?
+
+서버에서는 `Access-Control-Allow-Origin` 헤더를 통해 리소스 접근을 허용할 출처를 추가해야 합니다.
+허용하는 출처를 `*`로 설정하는 경우가 있는데, 이는 모든 출처를 허용하는 것이기 때문에 보안에 취약해질 수 있습니다.
+
+따라서 허용하는 출처를 명시적으로 지정해주는 것이 좋습니다.
+
+### CORS 에러 해결하기: Proxy
+
+클라이언트에서 직접 요청을 보내지 않고, `Proxy`를 통해 우회해서 요청하는 방법도 있습니다. 이 Proxy를 사용하면 리소스와 동일한 출처에서 요청을 보내는 것처럼 보이기 때문에 CORS 에러를 방지할 수 있습니다.
+Next.js에서는 들어오는 요청 경로를 다른 대상 경로에 매핑할 수 있도록 도와주는 `rewrites`를 사용해서 이 Proxy 기능을 구현할 수 있습니다.
+
+이렇게 작성하면 URL은 `/about`이지만, 내부적으로는 `/`페이지를 렌더링해서 보여주게 됩니다.
+
+```typescript
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: "/about",
+        destination: "/",
+      },
+    ];
+  },
+};
+```
+
+이를 활용하면 프록시(proxy)처럼 동작하도록 구성할 수 있습니다.
+
+```typescript
+const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${process.env.NEXT_PUBLIC_HTTP_API_URL}/:path*`,
+      },
+    ];
+  },
+};
+```
+
+- 브라우저는 `/api/:path*`로 요청을 보내기 때문에 **프론트와 동일한 도메인으로 요청을 보낸 것으로 인식**
+- 실제로는 Next.js 서버가 이 요청을 받아, `rewrite` 설정에 따라 **서버 도메인으로 요청을 내부적으로 전달(proxy)**
+- **하지만 브라우저는 이 내부 동작을 모르기 때문에**, CORS 문제가 발생하지 않음
+
+이 방법을 사용해서 CORS 에러를 해결해주었습니다.
+
+## 마치며
+
+지금까지 CORS와 SOP에 대한 정보와 Next.js에서 CORS 에러를 해결하는 방법을 알아보았습니다.
+CORS는 서로 다른 출처 간의 리소스를 공유하기 위한 정책을 의미하고, SOP는 동일한 출처 간의 리소스를 공유하기 위한 정책을 의미합니다.
+
+CORS 에러는 서로 다른 출처로부터 리소스를 요청할 때 발생하며, 이를 해결하기 위해서는 서버에서 `Access-Control-Allow-Origin` 에 리소스 접근을 허용할 출처를 추가하거나, 클라이언트에서 `Proxy`를 활용하여 요청을 보내야 합니다.
+
+## Reference
+
+- [악명 높은 CORS 개념 & 해결법 - 정리 끝판왕](https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-CORS-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95-%F0%9F%91%8F)
