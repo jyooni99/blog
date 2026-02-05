@@ -46,10 +46,17 @@ export const getPostDetail = (slug: string) => {
 export const getAllPosts = (): Post[] => {
   const mdxFiles = fs.readdirSync(POSTS_PATH).filter((file) => file.endsWith(".mdx"));
 
-  return mdxFiles.map((file) => {
+  const posts = mdxFiles.map((file) => {
     const slug = file.replace(/\.mdx$/, "");
     const { metaData } = getPostDetail(slug);
 
     return { metaData, slug };
+  });
+
+  return posts.sort((a, b) => {
+    const dateA = new Date(a.metaData.date).getTime() || 0;
+    const dateB = new Date(b.metaData.date).getTime() || 0;
+
+    return dateB - dateA;
   });
 };
