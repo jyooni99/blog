@@ -1,5 +1,6 @@
 import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
 const prettyCodeOptions = {
@@ -15,6 +16,6 @@ export const mdxOptions: MDXRemoteProps["options"] = {
   mdxOptions: {
     format: "mdx",
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+    rehypePlugins: [rehypeSlug, [rehypePrettyCode, prettyCodeOptions]],
   },
 };

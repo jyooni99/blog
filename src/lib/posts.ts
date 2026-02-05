@@ -2,6 +2,7 @@ import type { Post, PostMetadata } from "@/src/types/post-data";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { getHeadings } from "./heading";
 
 const POSTS_PATH = path.join(process.cwd(), "/posts");
 
@@ -31,6 +32,7 @@ export const getPostDetail = (slug: string) => {
   const mdxFilePath = path.join(POSTS_PATH, `${slug}.mdx`);
   const mdxFileContents = fs.readFileSync(mdxFilePath, "utf8");
   const { content: MDXContent, data } = matter(mdxFileContents);
+  const headings = getHeadings(MDXContent);
 
   const metaData: PostMetadata = {
     title: data.title || "",
@@ -40,7 +42,7 @@ export const getPostDetail = (slug: string) => {
     coverImage: data.coverImage || "",
   };
 
-  return { MDXContent, metaData };
+  return { MDXContent, metaData, headings };
 };
 
 export const getAllPosts = (): Post[] => {

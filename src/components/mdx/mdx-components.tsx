@@ -6,16 +6,29 @@ import Pre from "./pre";
 
 export function getMDXComponents(components: MDXComponents = {}): MDXComponents {
   return {
-    // 헤딩 레벨
-    h1: ({ children }) => (
-      <h1 className="text-4xl mt-8 break-keep mb-3 font-black first:mt-0">{children}</h1>
+    h1: ({ children, id, ...rest }) => (
+      <h1
+        id={id}
+        className="text-4xl mt-8 break-keep mb-3 font-black first:mt-0"
+        {...rest}
+      >
+        {children}
+      </h1>
     ),
-    h2: ({ children }) => (
-      <h2 className="text-2xl font-extrabold mb-3 mt-16">{children}</h2>
+    h2: ({ children, id, ...rest }) => (
+      <h2 id={id} className="text-2xl font-extrabold mb-3 mt-16 scroll-mt-20" {...rest}>
+        {children}
+      </h2>
     ),
-    h3: ({ children }) => <h3 className="text-xl font-bold mb-3 mt-8">{children}</h3>,
-    h4: ({ children }) => (
-      <h4 className="text-lg font-semibold mb-3 mt-12">{children}</h4>
+    h3: ({ children, id, ...rest }) => (
+      <h3 id={id} className="text-xl font-bold mb-3 mt-8 scroll-mt-20" {...rest}>
+        {children}
+      </h3>
+    ),
+    h4: ({ children, id, ...rest }) => (
+      <h4 id={id} className="text-lg font-semibold mb-3 mt-12 scroll-mt-20" {...rest}>
+        {children}
+      </h4>
     ),
 
     // 텍스트 요소
