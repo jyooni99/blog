@@ -5,14 +5,10 @@
   --foreground: var(--color-zinc-800);
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-pretendard), Arial, Helvetica, sans-serif;
 }
 
 body::selection {
@@ -33,7 +29,6 @@ body::selection {
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-violet-dark: #242440;
   --color-violet-light: #cba6f7;
@@ -46,14 +41,6 @@ body::selection {
 
 .group-hover-violet {
   @apply group-hover:text-violet-600 dark:group-hover:text-violet-light transition-colors;
-}
-
-.badge-violet {
-  @apply text-violet-700 bg-violet-50 dark:text-violet-light dark:bg-violet-dark;
-}
-
-.badge-hover {
-  @apply hover:bg-violet-100 hover:text-violet-800 transition-colors cursor-pointer dark:hover:bg-violet-dark/60 dark:hover:text-violet-light;
 }
 
 /* ============================================
@@ -81,7 +68,7 @@ figure[data-rehype-pretty-code-figure]:has(figcaption) pre {
 
 /* 인라인 코드 스타일  */
 code:not(figure[data-rehype-pretty-code-figure] code) {
-  @apply px-1.5 py-0.5 mx-0.5 tracking-wide bg-zinc-100 dark:bg-violet-dark text-violet-500! dark:text-violet-light! rounded font-mono text-sm;
+  @apply px-1.5 py-0.5 mx-0.5 font-mono tracking-wide bg-violet-100/40 dark:bg-violet-dark text-violet-500 dark:text-violet-light! rounded text-sm;
 }
 
 /* ============================================

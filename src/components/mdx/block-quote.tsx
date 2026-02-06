@@ -9,7 +9,7 @@ const BlockQuote = ({
 }) => {
   return (
     <blockquote
-      className={`leading-7 border-l-4 border-violet-400 dark:border-[#664e8b] py-0.5 px-6 my-6 font-medium italic text-zinc-700 dark:text-zinc-300 ${className}`}
+      className={`leading-7 border-l-4 border-violet-400 dark:border-violet-light y-0.5 px-6 my-6 font-medium italic text-zinc-700 dark:text-zinc-300 ${className}`}
     >
       {children}
     </blockquote>

@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 
 const prettyCodeOptions = {
   theme: {
-    light: "catppuccin-latte",
+    light: "github-light",
     dark: "catppuccin-mocha",
   },
   keepBackground: true,

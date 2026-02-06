@@ -1,22 +1,17 @@
 interface TagsBadgeProps {
   tags: string[];
-  clickable?: boolean;
 }
 
-const TagsBadge = ({ tags, clickable = true }: TagsBadgeProps) => {
-  const Tag = clickable ? "button" : "span";
-
+const TagsBadge = ({ tags }: TagsBadgeProps) => {
   return (
     <div className="flex flex-wrap gap-3">
       {tags.map((tag) => (
-        <Tag
+        <span
           key={tag}
-          className={`text-xs sm:text-sm badge-violet px-3 py-1  font-mono tracking-tight ${
-            clickable && "badge-hover"
-          }`}
+          className="text-xs md:text-[0.875rem] font-mono tracking-tight text-gray-400"
         >
           #{tag}
-        </Tag>
+        </span>
       ))}
     </div>
   );

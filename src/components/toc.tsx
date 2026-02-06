@@ -47,27 +47,24 @@ const TOC = ({ headings }: TOCProps) => {
   }, []);
 
   return (
-    <aside className="hidden lg:block">
-      <div className="sticky top-24">
-        <p className="font-bold text-lg pb-1.5">On This Page</p>
-        <ul>
-          {headings.map((heading) => (
-            <li
-              key={heading.id}
-              className={cn(
-                indentClass[heading.indentLevel],
-                "py-1 transition-all",
-                currentContent === heading.id
-                  ? "text-violet-600 dark:text-violet-300 font-medium"
-                  : "text-zinc-400 dark:text-zinc-300 hover:text-zinc-600 dark:hover:text-zinc-400 hover:underline",
-              )}
-            >
-              <Link href={`#${heading.id}`}>{heading.text}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </aside>
+    <div className="sticky top-20 w-60">
+      <ul>
+        {headings.map((heading) => (
+          <li
+            key={heading.id}
+            className={cn(
+              indentClass[heading.indentLevel],
+              "py-1 transition-all",
+              currentContent === heading.id
+                ? "text-violet-600 dark:text-violet-light font-medium"
+                : "text-zinc-400 dark:text-zinc-300 hover:text-zinc-600 dark:hover:text-zinc-400 hover:underline",
+            )}
+          >
+            <Link href={`#${heading.id}`}>{heading.text}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
