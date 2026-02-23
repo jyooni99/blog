@@ -1,9 +1,6 @@
 import Link from "next/link";
 
-const NAV_LINKS = [
-  { href: "/tags", label: "Tags" },
-  { href: "https://github.com/jyooni99", label: "Github" },
-] as const;
+const NAV_LINKS = [{ href: "https://github.com/jyooni99", label: "Github" }] as const;
 
 const Header = () => {
   return (
